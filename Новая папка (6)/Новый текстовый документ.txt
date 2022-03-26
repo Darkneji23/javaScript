@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml">
+  <head>
+	[[$meta]]
+	<script type="text/javascript">
+	  $(document).ready(function () {
+		
+		$("#btn-blog-next").click(function () {
+		  $('#blogCarousel').carousel('next')
+		});
+		$("#btn-blog-prev").click(function () {
+		  $('#blogCarousel').carousel('prev')
+		});
+		
+		$("#btn-client-next").click(function () {
+		  $('#clientCarousel').carousel('next')
+		});
+		$("#btn-client-prev").click(function () {
+		  $('#clientCarousel').carousel('prev')
+		});
+		
+	  });
+	  
+	  $(window).load(function(){
+		
+		$('.flexslider').flexslider({
+		  animation: "slide",
+		  slideshow: true,
+		  start: function(slider){
+			$('body').removeClass('loading');
+		  }
+		});  
+	  });
+	</script>
+	
+  </head>
+  
+  <body id="body" class="home animated fadeIn">
+	<div class="container">
+	  [[$header]]
+	  <div class="background" style="margin-bottom: 10px">
+		<div class="row headline" style="margin-bottom: 0">
+		  <div class="span8">
+            <div class="flexslider">
+              <ul class="slides">
+				[[getImageList?
+				&tvname=`migx`
+    			&tpl=`sliderTpl`
+				&limit=`5`
+				&docid=`[[*id]]`
+				]]
+              </ul>
+			</div>
+		  </div>
+		  <div class="span4">
+			<h1>[[*pagetitle]] <br/></h1>
+			<p class="lead">[[*longtitle]]</p>
+			<p>[[*content]]</p>
+		  </div>
+		</div>
+	  </div>
+	  <div class="background" style="margin-bottom: 10px">
+		<div class="row gallery-row">
+		  
+		  <div class="span12">
+			<h5 class="title-bg">Галерея 
+			  <small>Останні опубліковані фото</small>
+			  <a href="[[~3]]"><button class="btn btn-mini btn-inverse hidden-phone" type="button">Галерея</button></a>
+			</h5>
+			<div class="row clearfix no-margin">
+			  <ul class="gallery-post-grid holder">
+				[[!getResources?
+				&limit=`12`
+				&tpl=`galleryTpl`
+				&parents=`3`
+				&includeTVs=`1`
+				&processTVs=`1`
+				&includeContent=`1`
+				&hideContainers=`1`
+				]]
+			  </ul>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="background">
+		<div class="row">
+		  <div class="span6 last_news">
+			<h5 class="title-bg latest_news">Блог 
+			  <small>останні статті</small>
+			  <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">&raquo;</button>
+			  <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">&laquo;</button>
+			</h5>
+			<div id="blogCarousel" class="carousel slide ">
+			  <div class="carousel-inner">
+				[[!getResources?
+				&parents=`11`
+				&limit=`3`
+				&tpl=`mainNewsTpl`
+				&includeTVs=`1`
+				&processTVs=`1`
+				&hideContainers=`1`
+				]]
+			  </div>
+			</div> 	
+		  </div>
+		</div>
+	  </div>
+	</div>
+	[[$footer]]
+	<div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+  </body>
+  <script type="text/javascript">
+	$(document).ready(function() {
+	  $('#body').show();
+	  $('#socials').show();
+	});
+  </script>
+</html>
